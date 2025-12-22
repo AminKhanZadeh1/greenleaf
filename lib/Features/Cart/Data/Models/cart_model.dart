@@ -1,27 +1,27 @@
-import '../../../Shared/Logic/Entity/plant.dart';
+import 'package:greenleaf/Features/Cart/Domain/Entity/cart_product.dart';
 
-class PlantModel {
+class CartProductModel {
   final String id;
   final String name;
-  final String category;
   final double price;
   final String imageUrl;
+  int quantity;
 
-  const PlantModel({
+  CartProductModel({
     required this.id,
     required this.name,
-    required this.category,
     required this.price,
     required this.imageUrl,
+    this.quantity = 1,
   });
 
-  factory PlantModel.fromJson(Map<String, dynamic> json) {
-    return PlantModel(
+  factory CartProductModel.fromJson(Map<String, dynamic> json) {
+    return CartProductModel(
       id: json['id'] as String,
       name: json['name'] as String,
-      category: json['category'] as String,
       price: (json['price'] as num).toDouble(),
       imageUrl: json['image_url'] as String,
+      quantity: json['quantity'] as int,
     );
   }
 
@@ -29,19 +29,19 @@ class PlantModel {
     return {
       'id': id,
       'name': name,
-      'category': category,
       'price': price,
       'imageUrl': imageUrl,
+      'quantity': quantity,
     };
   }
 
-  Plant toEntity() {
-    return Plant(
+  CartProduct toEntity() {
+    return CartProduct(
       id: id,
       name: name,
-      category: category,
       price: price,
       imageUrl: imageUrl,
+      quantity: quantity,
     );
   }
 }

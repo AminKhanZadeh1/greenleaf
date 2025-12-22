@@ -1,5 +1,7 @@
-// import 'package:greenleaf/Core/Utils/Params/result.dart';
+import 'package:greenleaf/Core/Utils/Params/params.dart';
 
-// abstract class HomeRepo {
-//   Future<Result<>>
-// }
+import '../../../Shared/Logic/Entity/plant.dart';
+
+abstract class HomeRepo {
+  Future<Result<List<Plant>>> getItems();
+}

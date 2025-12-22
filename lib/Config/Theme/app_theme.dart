@@ -7,23 +7,17 @@ class AppTheme {
   AppTheme._();
 
   static ThemeData lightTheme = ThemeData(
-    fontFamily: 'Vazir',
+    fontFamily: 'Roboto',
     scaffoldBackgroundColor: AppColors.scaffold,
-    primaryColor: AppColors.magmaRed,
-    colorScheme: ColorScheme.light(
-      primary: AppColors.amberOrange,
-      secondary: AppColors.magmaRed,
-      error: AppColors.error,
-    ),
+    primaryColor: AppColors.charcoalBlack,
+    colorScheme: ColorScheme.light(error: AppColors.error),
     textTheme: const TextTheme(
       headlineMedium: AppTextStyles.headLineTextStyle,
       bodyMedium: AppTextStyles.bodyTextStyle,
     ),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
-      backgroundColor: AppColors.amberOrange,
       elevation: 3,
       enableFeedback: true,
-      selectedItemColor: AppColors.magmaRed,
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ThemeComponents.primaryButton,

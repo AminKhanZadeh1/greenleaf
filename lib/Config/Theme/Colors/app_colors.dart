@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
 
-/// Core color palette (SRP: handles app colors only)
 class AppColors {
-  AppColors._(); // Prevent instantiation
+  AppColors._();
 
-  static const Color magmaRed = Color(0xFFF93822);
-  static const Color amberOrange = Color(0xFFF47B20);
-  static const Color yellowAmber = Color(0xFFF6C700);
   static const Color charcoalBlack = Color(0xFF0D0D0D);
   static const Color grayLight = Color(0xFFA5AAA3);
   static const Color grayDark = Color(0xFF555856);

@@ -7,7 +7,7 @@ class ThemeComponents {
   ThemeComponents._();
 
   static ButtonStyle primaryButton = ElevatedButton.styleFrom(
-    backgroundColor: AppColors.amberOrange,
+    backgroundColor: AppColors.success,
     textStyle: AppTextStyles.buttonTextStyle,
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
     padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
@@ -17,7 +17,7 @@ class ThemeComponents {
     labelText: label,
     border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
     focusedBorder: OutlineInputBorder(
-      borderSide: BorderSide(color: AppColors.magmaRed, width: 2),
+      borderSide: BorderSide(color: AppColors.containerBorder, width: 2),
     ),
   );
 }

@@ -1,6 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
-void main() {
+import 'Config/Theme/app_theme.dart';
+import 'Core/Utils/DI/locator.dart';
+import 'Core/Utils/Routes/routes.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
+
+  await setup();
   runApp(const MyApp());
 }
 
@@ -9,11 +22,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-      ),
+    return MaterialApp.router(
+      debugShowCheckedModeBanner: false,
+      routerConfig: Routes.appRouter,
+      theme: AppTheme.lightTheme,
     );
   }
 }

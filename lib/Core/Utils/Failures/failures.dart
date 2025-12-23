@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:greenleaf/Config/API/api_config.dart';
 
 abstract class Failure {
   final String message;
@@ -24,13 +25,13 @@ class UnknownFailure extends Failure {
 Failure handleDioError(DioException e) {
   switch (e.type) {
     case DioExceptionType.connectionTimeout:
-      return TimeoutFailure('اتصال اینترنت را بررسی کنید!');
+      return TimeoutFailure(ApiConfig.timeOutError);
     case DioExceptionType.sendTimeout:
-      return TimeoutFailure('اتصال اینترنت را بررسی کنید!');
+      return TimeoutFailure(ApiConfig.timeOutError);
     case DioExceptionType.receiveTimeout:
-      return TimeoutFailure('اتصال اینترنت را بررسی کنید!');
+      return TimeoutFailure(ApiConfig.timeOutError);
     case DioExceptionType.connectionError:
-      return NetworkFailure('اتصال اینترنت را بررسی کنید!');
+      return NetworkFailure(ApiConfig.timeOutError);
     case DioExceptionType.badResponse:
     // try {
     //   final data = e.response?.data;
@@ -41,6 +42,6 @@ Failure handleDioError(DioException e) {
     //   'Server error: ${e.response?.statusCode} ${e.response?.statusMessage}',
     // );
     default:
-      return UnknownFailure('خطایی رخ داد!');
+      return UnknownFailure('Unknown Error!');
   }
 }

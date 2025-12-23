@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'Colors/app_colors.dart';
 import 'typography/app_text_styles.dart';
-import 'components/theme_components.dart';
 
 class AppTheme {
   AppTheme._();
@@ -18,9 +17,6 @@ class AppTheme {
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       elevation: 3,
       enableFeedback: true,
-    ),
-    elevatedButtonTheme: ElevatedButtonThemeData(
-      style: ThemeComponents.primaryButton,
     ),
   );
 }

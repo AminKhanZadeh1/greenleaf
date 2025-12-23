@@ -12,6 +12,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../Config/API/api_config.dart';
 import '../../../Config/Theme/app_theme.dart';
+import '../../../Features/Cart/Data/Source/Local/cart_local_source.dart';
 
 final GetIt locator = GetIt.instance;
 
@@ -23,9 +24,11 @@ setup() async {
   locator.registerLazySingleton<Dio>(() => ApiConfig.dio);
 
   // Caching Storage
-  locator.registerLazySingletonAsync<SharedPreferences>(
-    () => SharedPreferences.getInstance(),
-  );
+  // SharedPreferences آماده
+  final prefs = await SharedPreferences.getInstance();
+
+  // CartLocalSource register
+  locator.registerSingleton<CartLocalSource>(CartLocalSource(prefs));
 
   // API service
   locator.registerLazySingleton<HomeApiService>(

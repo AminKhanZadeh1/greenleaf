@@ -11,17 +11,22 @@ class CartLocalSource {
 
   Future<void> removeFromCart(String plantId) async {
     final cart = await getCartItems();
+    for (var element in cart) {
+      print("Json 1 ::: ${element.name}");
+    }
     cart.removeWhere((plant) => plant.id == plantId);
     await saveCartList(cart);
   }
 
   Future<void> saveCartList(List<CartProductModel> plants) async {
     final jsonList = plants.map((p) => p.toJson()).toList();
+    print("Json 2 ::: $jsonList");
     await _preferences.setString('plants', jsonEncode(jsonList));
   }
 
   Future<void> addToCart(CartProductModel product) async {
     final cart = await getCartItems();
+
     final index = cart.indexWhere((p) => p.id == product.id);
 
     if (index != -1) {
@@ -37,7 +42,7 @@ class CartLocalSource {
   Future<List<CartProductModel>> getCartItems() async {
     final jsonString = _preferences.getString("plants");
     if (jsonString == null) return [];
-
+    print("Json 3 ::: $jsonString");
     final cartItems = (jsonDecode(jsonString) as List<dynamic>)
         .map((item) => CartProductModel.fromJson(item as Map<String, dynamic>))
         .toList();

@@ -23,6 +23,6 @@ class CartRepoImpl implements CartRepo {
 
   @override
   Future<void> removeFromCart({required String plantId}) {
-    return _localSource.removeFromCart(plantId);
+    return _localSource.decreaseCartItem(plantId);
   }
 }

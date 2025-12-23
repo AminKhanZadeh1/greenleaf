@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:greenleaf/Config/Theme/Colors/app_colors.dart';
+import 'package:greenleaf/Features/Cart/Presentation/Bloc/cart_bloc.dart';
 import 'package:greenleaf/Features/Home/Presentation/Bloc/home_bloc.dart';
 import 'package:greenleaf/Features/Home/Presentation/Widgets/plants_grid.dart';
 
@@ -16,6 +17,7 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     context.read<HomeBloc>().add(GetItemsEvent());
+    context.read<CartBloc>().add(ClearCartEvent());
     super.initState();
   }
 

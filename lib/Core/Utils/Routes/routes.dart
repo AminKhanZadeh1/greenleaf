@@ -1,5 +1,6 @@
 import 'package:go_router/go_router.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:greenleaf/Core/Utils/DI/locator.dart';
 
 import '../../../Features/Cart/Presentation/Bloc/cart_bloc.dart';
 import '../../../Features/Home/Presentation/Bloc/home_bloc.dart';
@@ -16,8 +17,8 @@ class Routes {
         name: 'home',
         builder: (context, state) => MultiBlocProvider(
           providers: [
-            BlocProvider(create: (context) => HomeBloc()),
-            BlocProvider(create: (context) => CartBloc()),
+            BlocProvider(create: (context) => HomeBloc(locator())),
+            BlocProvider(create: (context) => CartBloc(locator())),
           ],
           child: const HomePage(),
         ),

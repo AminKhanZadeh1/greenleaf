@@ -3,13 +3,13 @@ class CartProduct {
   final String name;
   final double price;
   final String imageUrl;
-  final int quantity;
+  int quantity;
 
-  const CartProduct({
+  CartProduct({
     required this.id,
     required this.name,
     required this.price,
     required this.imageUrl,
-    required this.quantity,
+    this.quantity = 1,
   });
 }

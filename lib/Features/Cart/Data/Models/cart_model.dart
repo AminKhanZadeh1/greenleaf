@@ -12,7 +12,7 @@ class CartProductModel {
     required this.name,
     required this.price,
     required this.imageUrl,
-    this.quantity = 1,
+    required this.quantity,
   });
 
   factory CartProductModel.fromJson(Map<String, dynamic> json) {

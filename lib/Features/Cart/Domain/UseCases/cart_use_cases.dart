@@ -1,13 +1,24 @@
 import 'package:greenleaf/Core/Utils/Params/params.dart';
+import 'package:greenleaf/Features/Cart/Domain/Entity/cart_product.dart';
 import 'package:greenleaf/Features/Cart/Domain/Repository/cart_repo.dart';
 
-class AddToCartUseCase implements UseCase<void, void> {
+class GetCartItemsUseCase implements UseCase<List<CartProduct>, void> {
+  final CartRepo _cartRepo;
+
+  const GetCartItemsUseCase(this._cartRepo);
+  @override
+  Future<List<CartProduct>> call(void params) async {
+    return await _cartRepo.getCartItems();
+  }
+}
+
+class AddToCartUseCase implements UseCase<void, CartProduct> {
   final CartRepo _cartRepo;
 
   const AddToCartUseCase(this._cartRepo);
   @override
-  Future<void> call(void params) async {
-    return await _cartRepo.addToCart();
+  Future<void> call(CartProduct entity) async {
+    return await _cartRepo.addToCart(entity: entity);
   }
 }
 

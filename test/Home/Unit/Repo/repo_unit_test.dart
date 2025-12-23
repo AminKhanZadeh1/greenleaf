@@ -1,25 +1,21 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:greenleaf/Core/Utils/Failures/failures.dart';
-import 'package:greenleaf/Features/Home/Data/Models/plant_model.dart';
 import 'package:greenleaf/Features/Home/Data/Repository/home_repo_impl.dart';
 import 'package:greenleaf/Features/Home/Data/Source/Remote/home_api_service.dart';
-import 'package:greenleaf/Features/Home/Domain/UseCases/home_use_cases.dart';
-import 'package:greenleaf/Features/Shared/Logic/Entity/plant.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
-@GenerateMocks([HomeApiService, HomeRepoImpl])
-import 'home_unit_test.mocks.dart';
+@GenerateMocks([HomeApiService])
+import 'repo_unit_test.mocks.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
-  late MockHomeRepoImpl mockHomeRepo;
-  late GetItemsUseCase getItemsUseCase;
+  late MockHomeApiService mockApi;
+  late HomeRepoImpl repoImpl;
 
   setUp(() {
-    mockHomeRepo = MockHomeRepoImpl();
-    getItemsUseCase = GetItemsUseCase(mockHomeRepo);
+    mockApi = MockHomeApiService();
+    repoImpl = HomeRepoImpl(mockApi);
   });
 
   test('(Get items)', () async {
@@ -76,14 +72,14 @@ void main() {
       ],
     };
 
-    final List<Plant> plantEntities = jsonString["products"]!
-        .map((json) => PlantModel.fromJson(json).toEntity())
-        .toList();
+    when(mockApi.getItems()).thenAnswer((_) async => Right(jsonString));
 
-    when(mockHomeRepo.getItems()).thenAnswer((_) async => Right(plantEntities));
+    final result = await repoImpl.getItems();
 
-    final result = await getItemsUseCase.call(null);
-
-    expect(result, isA<Right<Failure, List<Plant>>>());
+    expect(result.isRight(), true);
+    result.fold((_) => fail('should not fail'), (plants) {
+      expect(plants.first.id, '1');
+      expect(plants.length, 6);
+    });
   });
 }

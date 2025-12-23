@@ -55,10 +55,12 @@ class PlantCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(price, style: const TextStyle(fontSize: 16)),
-                SizedBox(
-                  height: 30,
-                  width: 30,
-                  child: SvgPicture.asset("assets/icons/add.svg"),
+                GestureDetector(
+                  child: SizedBox(
+                    height: 30,
+                    width: 30,
+                    child: SvgPicture.asset("assets/icons/add.svg"),
+                  ),
                 ),
               ],
             ),

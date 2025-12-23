@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../Models/cart_model.dart';
+import '../../Models/cart_product_model.dart';
 
 class CartLocalSource {
   final SharedPreferences _preferences;
@@ -37,8 +37,12 @@ class CartLocalSource {
   Future<List<CartProductModel>> getCartItems() async {
     final jsonString = _preferences.getString("plants");
     if (jsonString == null) return [];
-    final List<dynamic> jsonList = jsonDecode(jsonString);
-    return jsonList.map((item) => CartProductModel.fromJson(item)).toList();
+
+    final cartItems = (jsonDecode(jsonString) as List<dynamic>)
+        .map((item) => CartProductModel.fromJson(item as Map<String, dynamic>))
+        .toList();
+
+    return cartItems;
   }
 
   Future<void> decreaseCartItem(String plantId) async {

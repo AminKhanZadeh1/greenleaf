@@ -17,11 +17,11 @@ class CartProductModel {
 
   factory CartProductModel.fromJson(Map<String, dynamic> json) {
     return CartProductModel(
-      id: json['id'] as String,
-      name: json['name'] as String,
-      price: (json['price'] as num).toDouble(),
-      imageUrl: json['image_url'] as String,
-      quantity: json['quantity'] as int,
+      id: json['id'] ?? '',
+      name: json['name'] ?? '',
+      price: json['price'] ?? 0.toDouble(),
+      imageUrl: json['imageUrl'] ?? '',
+      quantity: json['quantity'] ?? 1,
     );
   }
 
@@ -42,6 +42,16 @@ class CartProductModel {
       price: price,
       imageUrl: imageUrl,
       quantity: quantity,
+    );
+  }
+
+  factory CartProductModel.fromEntity(CartProduct entity) {
+    return CartProductModel(
+      id: entity.id,
+      name: entity.name,
+      imageUrl: entity.imageUrl,
+      price: entity.price,
+      quantity: entity.quantity,
     );
   }
 }

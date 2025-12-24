@@ -14,6 +14,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   HomeBloc(this._homeRepo) : super(HomeInitial()) {
     _getItemsUseCase = GetItemsUseCase(_homeRepo);
     on<GetItemsEvent>((event, emit) async {
+      emit(FetchItemsLoadingState());
       final result = await _getItemsUseCase.call(null);
 
       result.fold(

@@ -4,6 +4,9 @@ import 'package:get_it/get_it.dart';
 import 'package:greenleaf/Features/Cart/Data/Repository/cart_repo_impl.dart';
 import 'package:greenleaf/Features/Cart/Domain/Repository/cart_repo.dart';
 import 'package:greenleaf/Features/Cart/Presentation/Bloc/cart_bloc.dart';
+import 'package:greenleaf/Features/Favorites/Data/Repository/favorites_repo_impl.dart';
+import 'package:greenleaf/Features/Favorites/Data/Source/Local/favorites_local_source.dart';
+import 'package:greenleaf/Features/Favorites/Domain/Repository/favorites_repo.dart';
 import 'package:greenleaf/Features/Home/Data/Repository/home_repo_impl.dart';
 import 'package:greenleaf/Features/Home/Data/Source/Remote/home_api_service.dart';
 import 'package:greenleaf/Features/Home/Domain/Repository/home_repo.dart';
@@ -29,6 +32,7 @@ setup() async {
 
   // CartLocalSource register
   locator.registerSingleton<CartLocalSource>(CartLocalSource(prefs));
+  locator.registerSingleton<FavoritesLocalSource>(FavoritesLocalSource(prefs));
 
   // API service
   locator.registerLazySingleton<HomeApiService>(
@@ -39,6 +43,10 @@ setup() async {
   locator.registerLazySingleton<HomeRepo>(() => HomeRepoImpl(locator()));
 
   locator.registerLazySingleton<CartRepo>(() => CartRepoImpl(locator()));
+
+  locator.registerLazySingleton<FavoritesRepo>(
+    () => FavoritesRepoImpl(locator()),
+  );
 
   // Blocs
   locator.registerLazySingleton<HomeBloc>(() => HomeBloc(locator()));

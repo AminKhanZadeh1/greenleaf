@@ -1,11 +1,11 @@
 import '../../../Shared/Logic/Entity/plant.dart';
 
 class PlantModel {
-  final String id;
-  final String name;
-  final String category;
-  final double price;
-  final String imageUrl;
+  final String? id;
+  final String? name;
+  final String? category;
+  final double? price;
+  final String? imageUrl;
 
   const PlantModel({
     required this.id,
@@ -17,11 +17,11 @@ class PlantModel {
 
   factory PlantModel.fromJson(Map<String, dynamic> json) {
     return PlantModel(
-      id: json['id'] as String,
-      name: json['name'] as String,
-      category: json['category'] as String,
-      price: (json['price'] as num).toDouble(),
-      imageUrl: json['image_url'] as String,
+      id: json['id'] ?? "",
+      name: json['name'] ?? "",
+      category: json['category'] ?? "",
+      price: json['price'] ?? 0.toDouble(),
+      imageUrl: json['image_url'] ?? "",
     );
   }
 
@@ -37,11 +37,11 @@ class PlantModel {
 
   Plant toEntity() {
     return Plant(
-      id: id,
-      name: name,
-      category: category,
-      price: price,
-      imageUrl: imageUrl,
+      id: id ?? "",
+      name: name ?? "",
+      category: category ?? "",
+      price: price ?? 0,
+      imageUrl: imageUrl ?? "",
     );
   }
 }

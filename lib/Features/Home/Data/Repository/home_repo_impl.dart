@@ -15,7 +15,7 @@ class HomeRepoImpl implements HomeRepo {
     final result = await _apiService.getItems();
     return result.fold(
       (l) {
-        return Left(UnknownFailure("Convert failed!"));
+        return Left(l);
       },
       (r) {
         final productListJson = r['products'] as List;

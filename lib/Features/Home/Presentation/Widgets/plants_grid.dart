@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:greenleaf/Features/Cart/Presentation/Bloc/cart_bloc.dart';
+import 'package:top_snackbar_flutter/custom_snack_bar.dart';
+import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
+import '../../../../Config/Theme/Colors/app_colors.dart';
 import '../Bloc/home_bloc.dart';
 import 'plant_card.dart';
 
@@ -26,7 +29,21 @@ class _PlantsGridState extends State<PlantsGrid> {
   Widget build(BuildContext context) {
     return BlocConsumer<HomeBloc, HomeState>(
       listener: (context, state) {
-        if (state is FetchItemsFailedState) {}
+        if (state is FetchItemsFailedState) {
+          final msg = state.message;
+
+          showTopSnackBar(
+            Overlay.of(context),
+            SizedBox(
+              height: 70,
+              child: CustomSnackBar.error(
+                backgroundColor: AppColors.error,
+                message: msg,
+                borderRadius: BorderRadius.circular(30),
+              ),
+            ),
+          );
+        }
       },
       builder: (context, state) {
         if (state is FetchItemsSuccessState) {
@@ -70,7 +87,18 @@ class _PlantsGridState extends State<PlantsGrid> {
         } else if (state is FetchItemsLoadingState) {
           return const Center(child: CircularProgressIndicator());
         }
-        return Center(child: Text("No items found!"));
+        return Center(
+          child: Column(
+            spacing: 10,
+            children: [
+              Text("No items found!"),
+              ElevatedButton(
+                onPressed: () => context.read<HomeBloc>().add(GetItemsEvent()),
+                child: Text("Refresh"),
+              ),
+            ],
+          ),
+        );
       },
     );
   }

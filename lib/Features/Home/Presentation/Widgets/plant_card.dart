@@ -86,6 +86,7 @@ class PlantCard extends StatelessWidget {
                       style: const TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 13,
+                        color: AppColors.charcoalBlack,
                       ),
                     ),
                   ],
@@ -94,7 +95,14 @@ class PlantCard extends StatelessWidget {
                 Center(
                   child: Row(
                     children: [
-                      Text('\$$price', style: const TextStyle(fontSize: 16)),
+                      Text(
+                        '\$$price',
+                        style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: AppColors.charcoalBlack,
+                        ),
+                      ),
 
                       BlocBuilder<CartBloc, CartState>(
                         builder: (context, state) {

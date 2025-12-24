@@ -10,7 +10,6 @@ class FavoritesLocalSource {
   Future<List<String>> getFavItems() async {
     final jsonString = _preferences.getString("favorites");
     if (jsonString == null) return [];
-    print("Json 6 ::: $jsonString");
     final cartItems = (jsonDecode(jsonString) as List<dynamic>)
         .map((item) => item.toString())
         .toList();
@@ -35,9 +34,6 @@ class FavoritesLocalSource {
 
   Future<void> removeFromFavs(String id) async {
     final cart = await getFavItems();
-    for (String itemId in cart) {
-      print("Json 7 ::: $itemId");
-    }
     cart.removeWhere((p) => p == id);
     await saveFavsList(cart);
   }

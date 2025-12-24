@@ -37,33 +37,6 @@ class PlantCard extends StatelessWidget {
         ),
         child: Stack(
           children: [
-            Align(
-              alignment: Alignment.topRight,
-              child: CircleAvatar(
-                radius: 16,
-                backgroundColor: Colors.white,
-                child: GestureDetector(
-                  onTap: () => context.read<FavoriteCubit>().toggle(id),
-                  child: BlocBuilder<FavoriteCubit, Set<String>>(
-                    builder: (context, state) {
-                      final isFavorite = state.contains(id);
-
-                      return SizedBox(
-                        height: 20,
-                        width: 20,
-                        child: SvgPicture.asset(
-                          'assets/icons/heart.svg',
-                          colorFilter: ColorFilter.mode(
-                            isFavorite ? Colors.red : Colors.black,
-                            BlendMode.srcIn,
-                          ),
-                        ),
-                      );
-                    },
-                  ),
-                ),
-              ),
-            ),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -255,6 +228,33 @@ class PlantCard extends StatelessWidget {
                   ),
                 ),
               ],
+            ),
+            Align(
+              alignment: Alignment.topRight,
+              child: CircleAvatar(
+                radius: 16,
+                backgroundColor: Colors.white,
+                child: GestureDetector(
+                  onTap: () => context.read<FavoriteCubit>().toggle(id),
+                  child: BlocBuilder<FavoriteCubit, Set<String>>(
+                    builder: (context, state) {
+                      final isFavorite = state.contains(id);
+
+                      return SizedBox(
+                        height: 20,
+                        width: 20,
+                        child: SvgPicture.asset(
+                          'assets/icons/heart.svg',
+                          colorFilter: ColorFilter.mode(
+                            isFavorite ? Colors.red : Colors.black,
+                            BlendMode.srcIn,
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ),
             ),
           ],
         ),

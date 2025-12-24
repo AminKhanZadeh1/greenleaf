@@ -1,16 +1,49 @@
-# greenleaf
+# 🟢 Greenleaf – Flutter E-Commerce App
 
-A new Flutter project.
+A modern Flutter e-commerce application built with **Clean Architecture** and **DDD principles**, demonstrating scalable and maintainable app development.
 
-## Getting Started
+## ✨ Features
 
-This project is a starting point for a Flutter application.
+* 🏠 **Home:** Browse products and categories
+* 🛒 **Cart:** Add, remove, and manage items for purchase
+* ❤️ **Favorites:** Save preferred items for quick access
 
-A few resources to get you started if this is your first Flutter project:
+## 🛠 Architecture & Technologies
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+* **Clean Architecture:** Separate layers for Presentation, Domain, and Data
+* **Domain-Driven Design (DDD):** Business logic structured into entities, value objects, and use cases
+* **Repository Pattern:** Decoupled data sources for easier testing and maintenance
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## 📦 Getting Started
+
+### Prerequisites
+
+* Flutter SDK ([Install Guide](https://docs.flutter.dev/get-started/install))
+* IDE: Android Studio or VS Code
+
+### Installation
+
+```bash
+git clone https://github.com/your-username/greenleaf.git
+cd greenleaf
+flutter pub get
+flutter run
+```
+
+## 📚 Resources
+
+* [Flutter Documentation](https://docs.flutter.dev/)
+* [Flutter Codelab](https://docs.flutter.dev/get-started/codelab)
+* [Flutter Cookbook](https://docs.flutter.dev/cookbook)
+
+## 🔧 Contributing
+
+1. Fork the repository
+2. Create a new branch: `git checkout -b feature/your-feature-name`
+3. Commit changes: `git commit -m "Add new feature"`
+4. Push branch: `git push origin feature/your-feature-name`
+5. Open a Pull Request
+
+## 📄 License
+
+MIT License

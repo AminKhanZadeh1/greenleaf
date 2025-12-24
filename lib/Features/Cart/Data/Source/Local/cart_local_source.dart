@@ -30,7 +30,11 @@ class CartLocalSource {
     final index = cart.indexWhere((p) => p.id == product.id);
 
     if (index != -1) {
-      cart[index].quantity += 1;
+      if (cart[index].quantity >= 9) {
+        return;
+      } else {
+        cart[index].quantity += 1;
+      }
     } else {
       product.quantity = 1;
       cart.add(product);

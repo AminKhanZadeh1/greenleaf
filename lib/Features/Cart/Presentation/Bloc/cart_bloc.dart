@@ -3,7 +3,6 @@ import 'package:greenleaf/Features/Cart/Domain/Entity/cart_product.dart';
 import 'package:greenleaf/Features/Cart/Domain/Repository/cart_repo.dart';
 import 'package:greenleaf/Features/Cart/Domain/UseCases/cart_use_cases.dart';
 import 'package:meta/meta.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 part 'cart_event.dart';
 part 'cart_state.dart';
@@ -25,14 +24,12 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     on<AddToCartEvent>((event, emit) async {
       await _addToCartUseCase.call(event.cartProduct);
       emit(AddedToCartState());
+      add(GetCartItemsEvent());
     });
     on<RemoveFromCartEvent>((event, emit) async {
       await _removeFromCartUseCase.call(event.id);
       emit(RemovedFromCartState());
-    });
-    on<ClearCartEvent>((event, emit) async {
-      final prefs = await SharedPreferences.getInstance();
-      await prefs.clear();
+      add(GetCartItemsEvent());
     });
   }
 }
